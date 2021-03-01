@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+require('dotenv').config();
 
 app.get('/lyrics/:artist/:song', function(req, res) {
     const artist = req.params.artist;
@@ -12,7 +13,7 @@ app.get('/lyrics/:artist/:song', function(req, res) {
         url: 'https://mourits-lyrics.p.rapidapi.com/',
         params: { artist: artist, song: song },
         headers: {
-            'x-rapidapi-key': '[your api key]',
+            'x-rapidapi-key': process.env.XRAPIDAPIKEY,
             'x-rapidapi-host': 'mourits-lyrics.p.rapidapi.com'
         }
     };
