@@ -18,11 +18,11 @@ app.get('/lyrics/:artist/:song', (req, res) => {
 
             db.collection('song-lyrics').findOne(artistAndSong)
                 .then(results => {
-
                     console.log(results);
 
                     if (results) {
                         console.log('the song is in the db');
+                        res.send(results.lyrics);
                     } else {
                         console.log('the song is not in the db. Get lyrics from mourits-lyrics api');
 
@@ -72,7 +72,6 @@ app.get('/lyrics/:artist/:song', (req, res) => {
                     }
                 })
                 .catch(error => console.error(error));
-
         })
         .catch(console.error);
 });
